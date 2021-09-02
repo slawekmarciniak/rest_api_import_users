@@ -1,9 +1,6 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-
-import UsersList from "./components/UserList";
-
+import UsersList from "./components/UsersList";
 import "./App.css";
-import UserDetails from "./components/UserDetails";
 
 function App() {
   return (
