@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const User = ({ user }) => {
+const User = ({ user, changeView }) => {
   const { first, last } = user.name;
   const { street, city } = user.location;
   const { email, registered, login } = user;
@@ -33,7 +33,9 @@ const User = ({ user }) => {
           <img src={medium} alt="p" />
         </li>
       </ul>
-      <Link to={`/users/${login.uuid}`}>Show Details</Link>
+      <Link onClick={() => changeView()} to={`/users/${login.uuid}`}>
+        Show Details
+      </Link>
     </div>
   );
 };

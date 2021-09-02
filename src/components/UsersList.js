@@ -5,13 +5,17 @@ import User from "./User";
 
 const UsersList = () => {
   const [users, setUsers] = useState([]);
+  const [isListActive, setIsListActive] = useState(true);
+
+  const changeView = () => {
+    setIsListActive((prev) => !prev);
+  };
 
   useEffect(() => {
     fetch("https://randomuser.me/api/?results=10")
       .then((response) => response.json())
       .then((data) => {
         setUsers(data.results);
-        console.log(data.results);
       })
       .catch((error) => {
         console.log(error);
@@ -20,8 +24,15 @@ const UsersList = () => {
 
   return (
     <div className="usersContainer">
-      {users && users.map((user) => <User key={user.name.first} user={user} />)}
-      <Route path="/users/:userId" component={<UserDetails users={users} />} />
+      {isListActive &&
+        users &&
+        users.map((user) => (
+          <User changeView={changeView} key={user.name.first} user={user} />
+        ))}
+
+      <Route exact path="/users/:userId">
+        {!isListActive && <UserDetails users={users} />}
+      </Route>
     </div>
   );
 };

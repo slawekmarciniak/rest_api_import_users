@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 
 const UserDetails = ({ users }) => {
   const { userId } = useParams();
-  console.log(users);
+  //   console.log(users);
 
   useEffect(() => {
     console.log(users);
