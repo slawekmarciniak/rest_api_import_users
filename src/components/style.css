@@ -1,0 +1,40 @@
+.userContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+    margin: 20px auto;
+    padding: 10px;
+}
+
+.userContainer li {
+    list-style: none;
+    text-align: left;
+    font-size: 14px;
+    line-height: 25px;
+  
+}
+
+.userContainer ul {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 0;
+    padding-left: 5px;
+}
+
+.generalData {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.userContainer span {
+    color: gray;
+    margin-right: 5px;
+
+}
+
+.button {
+    margin: 20px  auto 0 auto;
+}

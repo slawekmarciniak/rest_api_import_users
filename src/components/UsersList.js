@@ -3,13 +3,20 @@ import React, { useState, useEffect } from "react";
 import UserDetails from "./UserDetails";
 import User from "./User";
 
+import "./style.css";
+
 const UsersList = () => {
   const [users, setUsers] = useState([]);
   const [isListActive, setIsListActive] = useState(true);
 
   const changeView = () => {
+    console.log("zmina view");
     setIsListActive((prev) => !prev);
   };
+
+  useEffect(() => {
+    console.log("render");
+  });
 
   useEffect(() => {
     fetch("https://randomuser.me/api/?results=10")
@@ -27,11 +34,22 @@ const UsersList = () => {
       {isListActive &&
         users &&
         users.map((user) => (
-          <User changeView={changeView} key={user.name.first} user={user} />
+          <User
+            changeView={changeView}
+            isListActive={isListActive}
+            key={user.name.first}
+            user={user}
+          />
         ))}
 
       <Route exact path="/users/:userId">
-        {!isListActive && <UserDetails users={users} />}
+        {!isListActive && (
+          <UserDetails
+            isListActive={isListActive}
+            users={users}
+            changeView={changeView}
+          />
+        )}
       </Route>
     </div>
   );

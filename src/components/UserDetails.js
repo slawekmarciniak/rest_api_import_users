@@ -1,15 +1,22 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import User from "./User";
 import { useParams } from "react-router-dom";
 
-const UserDetails = ({ users }) => {
+const UserDetails = ({ users, changeView }) => {
+  const [user, setUser] = useState(null);
   const { userId } = useParams();
-  //   console.log(users);
+
+  const showDetails = () => {
+    console.log(users);
+    const userDetails = users.filter((user) => user.login.uuid === userId);
+    return userDetails[0];
+  };
 
   useEffect(() => {
-    console.log(users);
+    setUser(showDetails());
   }, [userId]);
 
-  return <div>user details</div>;
+  return <div>{user && <User user={user} changeView={changeView} />}</div>;
 };
 
 export default UserDetails;
