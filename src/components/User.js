@@ -25,7 +25,6 @@ const User = ({ user, changeView, isListActive }) => {
   const { medium } = user.picture;
   const streetName = street.name ? street.name : "no data";
   const cityName = city ? city : "no data";
-
   const registerDate = registered.date.slice(0, 10);
 
   const nameFull = (first, last) => {
@@ -49,7 +48,6 @@ const User = ({ user, changeView, isListActive }) => {
             alt="Remy Sharp"
             src={medium}
           />
-
           <ul>{nameFull(first, last)}</ul>
         </div>
         <ul>
@@ -72,25 +70,14 @@ const User = ({ user, changeView, isListActive }) => {
           )}
 
           <li className="button">
-            <Button size="small" variant="outlined">
-              {isListActive && (
-                <Link
-                  style={{ textDecoration: "none", color: "gray" }}
-                  onClick={() => changeView()}
-                  to={`/users/${login.uuid}`}
-                >
-                  details
-                </Link>
-              )}
-              {!isListActive && (
-                <Link
-                  style={{ textDecoration: "none", color: "gray" }}
-                  to={"/"}
-                  onClick={() => changeView()}
-                >
-                  back
-                </Link>
-              )}
+            <Button
+              component={Link}
+              onClick={() => changeView()}
+              to={isListActive ? `/users/${login.uuid}` : "/"}
+              size="small"
+              variant="outlined"
+            >
+              {isListActive ? "details" : "back"}
             </Button>
           </li>
         </ul>

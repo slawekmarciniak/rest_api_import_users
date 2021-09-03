@@ -7,7 +7,6 @@ const UserDetails = ({ users, changeView }) => {
   const { userId } = useParams();
 
   const showDetails = () => {
-    console.log(users);
     const userDetails = users.filter((user) => user.login.uuid === userId);
     return userDetails[0];
   };
