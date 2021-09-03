@@ -92,7 +92,7 @@ const User = ({ user, changeView, isListActive }) => {
           <MapContainer
             className="mapContainer"
             center={[parseInt(latitude), parseInt(longitude)]}
-            zoom={5}
+            zoom={1}
             scrollWheelZoom={false}
           >
             <TileLayer
