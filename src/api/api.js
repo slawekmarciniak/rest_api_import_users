@@ -1,5 +1,8 @@
+const API_URL = "https://randomuser.me/api";
+const usersQuantity = 10;
+
 async function getData() {
-  const response = await fetch("https://randomuser.me/api/?results=10");
+  const response = await fetch(`${API_URL}/?results=${usersQuantity}`);
   if (!response.ok) {
     const message = `An error has occured: ${response.status}`;
     console.log(message);
