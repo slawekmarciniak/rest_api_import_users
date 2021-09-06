@@ -4,30 +4,29 @@ import Backdrop from "@material-ui/core/Backdrop";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import UserDetails from "./UserDetails";
 import User from "./User";
+import getData from "../api/api";
 import "./style.css";
 
 const UsersList = () => {
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = useState(true);
   const [users, setUsers] = useState([]);
   const [isListActive, setIsListActive] = useState(true);
+
+  async function getDataFromApi() {
+    const data = await getData();
+    setUsers(data);
+  }
+
+  useEffect(() => {
+    setTimeout(() => {
+      getDataFromApi();
+      setOpen(false);
+    }, 5000);
+  }, []);
 
   const changeView = () => {
     setIsListActive((prev) => !prev);
   };
-
-  useEffect(() => {
-    setTimeout(() => {
-      fetch("https://randomuser.me/api/?results=10")
-        .then((response) => response.json())
-        .then((data) => {
-          setUsers(data.results);
-          setOpen(false);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }, 5000);
-  }, []);
 
   return (
     <>
